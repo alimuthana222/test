@@ -15,17 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import {
-  Loader2,
-  LogIn,
-  UserPlus,
-  ShieldCheck,
-  Sparkles,
-  CheckCircle2,
-  BellRing,
-  Calendar,
-  Users,
-} from "lucide-react";
+import { Loader2, LogIn, UserPlus, ShieldCheck, Sparkles } from "lucide-react";
 import { IRAQ_GOVERNORATES, MEDICAL_SPECIALTIES } from "@/lib/iraq-governorates";
 import authImg from "@/assets/auth-illustration.png";
 
@@ -41,13 +31,6 @@ export const Route = createFileRoute("/auth")({
   }),
   component: AuthPage,
 });
-
-const FEATURE_PILLS = [
-  { icon: Calendar, text: "تقويم مواعيد ذكي" },
-  { icon: BellRing, text: "إشعارات فورية" },
-  { icon: Users, text: "سجل مرضى مركزي" },
-  { icon: ShieldCheck, text: "أمان طبي معياري" },
-];
 
 function AuthPage() {
   const navigate = useNavigate();
@@ -65,140 +48,57 @@ function AuthPage() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen grid md:grid-cols-[1fr_1.08fr]" dir="rtl">
-
-      {/* ─── Left Panel ─────────────────────────────────────────────────── */}
-      <aside className="relative hidden md:flex flex-col justify-between overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-brand-gradient-hero" aria-hidden />
-        <div className="absolute inset-0 bg-dot-pattern opacity-20" aria-hidden />
-        <div className="absolute -top-20 -right-20 size-80 rounded-full bg-white/8 blur-3xl" aria-hidden />
-        <div className="absolute bottom-0 -left-10 size-60 rounded-full bg-white/6 blur-2xl" aria-hidden />
-
-        {/* Content */}
-        <div className="relative z-10 p-10 flex flex-col h-full">
-          <NabdaLogo tone="light" tagline />
-
-          <div className="flex-1 flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-semibold text-white">
-                <Sparkles className="size-3.5" /> منصة عيادات nabda
-              </span>
-              <h2 className="mt-5 text-3xl font-extrabold text-white leading-snug">
-                لوحة تحكم عيادتك،
-                <br />
-                بواجهة عربية احترافية.
-              </h2>
-              <p className="mt-4 text-white/80 text-sm leading-relaxed max-w-xs">
-                مواعيد، أوقات دوام الأطباء، وسجل المرضى — كل شي مربوط بتطبيق nabda مباشرة.
-              </p>
-
-              {/* Feature pills */}
-              <div className="mt-8 grid grid-cols-2 gap-3">
-                {FEATURE_PILLS.map((pill, i) => (
-                  <motion.div
-                    key={pill.text}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="glass-dark rounded-2xl px-3.5 py-3 flex items-center gap-2.5"
-                  >
-                    <div className="size-7 rounded-lg bg-white/20 grid place-items-center shrink-0">
-                      <pill.icon className="size-3.5 text-white" />
-                    </div>
-                    <span className="text-xs font-medium text-white/90">{pill.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Trust badges */}
-              <ul className="mt-8 space-y-2 text-sm text-white/85">
-                {[
-                  "حجز فوري من تطبيق المرضى",
-                  "إشعارات لحظية للأطباء",
-                  "أمان بيانات مرضاك (RLS)",
-                ].map((t) => (
-                  <li key={t} className="flex items-center gap-2.5">
-                    <CheckCircle2 className="size-4 text-accent shrink-0" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-
-          {/* Auth illustration */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mt-8"
-          >
-            <div className="rounded-2xl overflow-hidden border border-white/20 shadow-elevated">
-              <img
-                src={authImg}
-                alt="طبيبة في عيادة"
-                width={1024}
-                height={768}
-                loading="lazy"
-                className="w-full h-48 object-cover"
-              />
-            </div>
-          </motion.div>
-
-          <div className="text-xs text-white/60 font-latin mt-6 relative z-10">
-            Healthcare begins here.
-          </div>
+    <div className="min-h-screen grid md:grid-cols-[1fr_1.05fr]" dir="rtl">
+      <aside className="relative hidden md:flex flex-col justify-between p-10 bg-brand-gradient text-white overflow-hidden">
+        <NabdaLogo tone="light" tagline />
+        <div className="relative z-10 max-w-md">
+          
+          <h2 className="mt-5 text-3xl font-extrabold leading-snug">
+            لوحة تحكم عيادتك،
+            <br /> بواجهة عربية احترافية.
+          </h2>
+          <p className="mt-4 text-white/85 text-sm leading-relaxed">
+            مواعيد، أوقات دوام الأطباء، وسجل المرضى — كل شي مربوط بتطبيق nabda مباشرة.
+          </p>
+          <ul className="mt-6 space-y-2 text-sm text-white/90">
+            {["حجز فوري من تطبيق المرضى", "إشعارات لحظية للأطباء", "أمان بيانات مرضاك (RLS)"].map((t) => (
+              <li key={t} className="flex items-center gap-2">
+                <ShieldCheck className="size-4" /> {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 opacity-30 mix-blend-lighten">
+          <img src={authImg} alt="" width={1024} height={1280} loading="lazy" className="w-full object-cover" />
+        </div>
+        <div className="text-xs text-white/70 font-latin relative z-10">
+          Healthcare begins here.
         </div>
       </aside>
 
-      {/* ─── Right Panel (Form) ──────────────────────────────────────────── */}
-      <main className="flex items-center justify-center p-6 md:p-12 bg-background min-h-screen">
+      <main className="flex items-center justify-center p-6 md:p-12 bg-background">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5 }}
           className="w-full max-w-md"
         >
           <div className="md:hidden mb-8">
             <NabdaLogo />
           </div>
-
           <Tabs value={tab} onValueChange={(v) => setTab(v as typeof tab)}>
-            <TabsList className="grid grid-cols-2 w-full rounded-full h-12 p-1 bg-muted">
-              <TabsTrigger
-                value="signin"
-                className="rounded-full data-[state=active]:bg-white data-[state=active]:shadow-card-soft data-[state=active]:text-foreground font-medium transition-all"
-              >
-                <LogIn className="size-3.5 ml-2" />
-                دخول
-              </TabsTrigger>
-              <TabsTrigger
-                value="signup"
-                className="rounded-full data-[state=active]:bg-white data-[state=active]:shadow-card-soft data-[state=active]:text-foreground font-medium transition-all"
-              >
-                <UserPlus className="size-3.5 ml-2" />
-                تسجيل عيادة
-              </TabsTrigger>
+            <TabsList className="grid grid-cols-2 w-full rounded-full h-11 p-1">
+              <TabsTrigger value="signin" className="rounded-full">دخول</TabsTrigger>
+              <TabsTrigger value="signup" className="rounded-full">تسجيل عيادة</TabsTrigger>
             </TabsList>
-
             <AnimatePresence mode="wait">
               <TabsContent key={tab} value={tab} className="mt-6">
                 <motion.div
-                  initial={{ opacity: 0, x: tab === "signin" ? -14 : 14 }}
+                  initial={{ opacity: 0, x: tab === "signin" ? -12 : 12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: tab === "signin" ? 14 : -14 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  transition={{ duration: 0.3 }}
                 >
-                  {tab === "signin" ? (
-                    <SignInForm />
-                  ) : (
-                    <SignUpForm onDone={() => setTab("signin")} />
-                  )}
+                  {tab === "signin" ? <SignInForm /> : <SignUpForm onDone={() => setTab("signin")} />}
                 </motion.div>
               </TabsContent>
             </AnimatePresence>
@@ -241,36 +141,11 @@ function SignInForm() {
       <p className="mt-2 text-sm text-muted-foreground">
         سجّل الدخول لإدارة مواعيد عيادتك في nabda.
       </p>
-      <form onSubmit={onSubmit} className="mt-7 space-y-4">
-        <Field
-          id="email"
-          label="البريد الإلكتروني"
-          type="email"
-          value={email}
-          onChange={setEmail}
-          placeholder="you@clinic.iq"
-          ltr
-        />
-        <Field
-          id="password"
-          label="كلمة المرور"
-          type="password"
-          value={password}
-          onChange={setPassword}
-          placeholder="••••••••"
-          ltr
-        />
-        <Button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-full shadow-brand bg-brand-gradient hover:shadow-[0_16px_40px_-10px_rgba(11,110,110,0.5)] hover:scale-[1.01] transition-all duration-200"
-          size="lg"
-        >
-          {loading ? (
-            <Loader2 className="size-4 animate-spin ml-2" />
-          ) : (
-            <LogIn className="size-4 ml-2" />
-          )}
+      <form onSubmit={onSubmit} className="mt-6 space-y-4">
+        <Field id="email" label="البريد الإلكتروني" type="email" value={email} onChange={setEmail} placeholder="you@clinic.iq" />
+        <Field id="password" label="كلمة المرور" type="password" value={password} onChange={setPassword} placeholder="••••••••" />
+        <Button type="submit" disabled={loading} className="w-full rounded-full shadow-brand" size="lg">
+          {loading ? <Loader2 className="size-4 animate-spin ml-2" /> : <LogIn className="size-4 ml-2" />}
           {loading ? "جارٍ الدخول..." : "دخول"}
         </Button>
       </form>
@@ -291,8 +166,7 @@ function SignUpForm({ onDone }: { onDone: () => void }) {
     clinic_address: "",
   });
 
-  const set = (k: keyof typeof form) => (v: string) =>
-    setForm((f) => ({ ...f, [k]: v }));
+  const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -311,6 +185,7 @@ function SignUpForm({ onDone }: { onDone: () => void }) {
       options: {
         emailRedirectTo: window.location.origin + "/clinic",
         data: {
+          user_type: "clinic",
           full_name: form.full_name,
           phone: form.phone,
           specialty: form.specialty,
@@ -329,9 +204,7 @@ function SignUpForm({ onDone }: { onDone: () => void }) {
       toast.success("تم تسجيل عيادتك بنجاح.");
       window.location.href = "/clinic";
     } else {
-      toast.success(
-        "تم إنشاء الحساب. تحقق من بريدك للتفعيل ثم سجّل الدخول.",
-      );
+      toast.success("تم إنشاء الحساب. تحقق من بريدك للتفعيل ثم سجّل الدخول.");
       onDone();
     }
   };
@@ -344,109 +217,44 @@ function SignUpForm({ onDone }: { onDone: () => void }) {
       </p>
       <form onSubmit={onSubmit} className="mt-6 space-y-4">
         <div className="grid grid-cols-2 gap-3">
-          <Field
-            id="full_name"
-            label="اسم الطبيب"
-            value={form.full_name}
-            onChange={set("full_name")}
-            required
-            placeholder="د. أحمد كريم"
-          />
-          <Field
-            id="phone"
-            label="رقم الهاتف"
-            value={form.phone}
-            onChange={set("phone")}
-            required
-            placeholder="07XXXXXXXXX"
-            ltr
-          />
+          <Field id="full_name" label="اسم الطبيب" value={form.full_name} onChange={set("full_name")} required placeholder="د. أحمد كريم" />
+          <Field id="phone" label="رقم الهاتف" value={form.phone} onChange={set("phone")} required placeholder="07XXXXXXXXX" ltr />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-2">
-            <Label className="text-sm font-medium">التخصص</Label>
+            <Label>التخصص</Label>
             <Select value={form.specialty} onValueChange={set("specialty")}>
-              <SelectTrigger className="rounded-xl border-border/70 focus:border-primary focus:ring-primary/20">
-                <SelectValue placeholder="اختر التخصص" />
-              </SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="اختر التخصص" /></SelectTrigger>
               <SelectContent>
                 {MEDICAL_SPECIALTIES.map((s) => (
-                  <SelectItem key={s} value={s}>
-                    {s}
-                  </SelectItem>
+                  <SelectItem key={s} value={s}>{s}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-2">
-            <Label className="text-sm font-medium">المحافظة</Label>
+            <Label>المحافظة</Label>
             <Select value={form.governorate} onValueChange={set("governorate")}>
-              <SelectTrigger className="rounded-xl border-border/70 focus:border-primary focus:ring-primary/20">
-                <SelectValue placeholder="اختر المحافظة" />
-              </SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="اختر المحافظة" /></SelectTrigger>
               <SelectContent>
                 {IRAQ_GOVERNORATES.map((g) => (
-                  <SelectItem key={g} value={g}>
-                    {g}
-                  </SelectItem>
+                  <SelectItem key={g} value={g}>{g}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
         </div>
-        <Field
-          id="clinic_name"
-          label="اسم العيادة"
-          value={form.clinic_name}
-          onChange={set("clinic_name")}
-          required
-          placeholder="عيادة الشفاء"
-        />
-        <Field
-          id="clinic_address"
-          label="عنوان العيادة"
-          value={form.clinic_address}
-          onChange={set("clinic_address")}
-          required
-          placeholder="بغداد، الكرادة، شارع 62"
-        />
-        <Field
-          id="email_su"
-          label="البريد الإلكتروني"
-          type="email"
-          value={form.email}
-          onChange={set("email")}
-          required
-          placeholder="you@clinic.iq"
-          ltr
-        />
-        <Field
-          id="password_su"
-          label="كلمة المرور"
-          type="password"
-          value={form.password}
-          onChange={set("password")}
-          required
-          placeholder="••••••••"
-          ltr
-        />
+        <Field id="clinic_name" label="اسم العيادة" value={form.clinic_name} onChange={set("clinic_name")} required placeholder="عيادة الشفاء" />
+        <Field id="clinic_address" label="عنوان العيادة" value={form.clinic_address} onChange={set("clinic_address")} required placeholder="بغداد، الكرادة، شارع 62" />
+        <Field id="email_su" label="البريد الإلكتروني" type="email" value={form.email} onChange={set("email")} required placeholder="you@clinic.iq" ltr />
+        <Field id="password_su" label="كلمة المرور" type="password" value={form.password} onChange={set("password")} required placeholder="••••••••" ltr />
 
-        <Button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-full shadow-brand bg-brand-gradient hover:shadow-[0_16px_40px_-10px_rgba(11,110,110,0.5)] hover:scale-[1.01] transition-all duration-200"
-          size="lg"
-        >
-          {loading ? (
-            <Loader2 className="size-4 animate-spin ml-2" />
-          ) : (
-            <UserPlus className="size-4 ml-2" />
-          )}
+        <Button type="submit" disabled={loading} className="w-full rounded-full shadow-brand" size="lg">
+          {loading ? <Loader2 className="size-4 animate-spin ml-2" /> : <UserPlus className="size-4 ml-2" />}
           {loading ? "جارٍ التسجيل..." : "تسجيل العيادة"}
         </Button>
         <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
-          بالضغط على تسجيل، أنت توافق على أن تكون بيانات مرضاك محميّة بسياسة
-          الخصوصية.
+          بالضغط على تسجيل، أنت توافق على أن تكون بيانات مرضاك محميّة بسياسة الخصوصية.
         </p>
       </form>
     </div>
@@ -454,35 +262,20 @@ function SignUpForm({ onDone }: { onDone: () => void }) {
 }
 
 function Field({
-  id,
-  label,
-  value,
-  onChange,
-  type = "text",
-  placeholder,
-  required,
-  ltr,
+  id, label, value, onChange, type = "text", placeholder, required, ltr,
 }: {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  type?: string;
-  placeholder?: string;
-  required?: boolean;
-  ltr?: boolean;
+  id: string; label: string; value: string; onChange: (v: string) => void;
+  type?: string; placeholder?: string; required?: boolean; ltr?: boolean;
 }) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={id} className="text-sm font-medium">
-        {label}
-      </Label>
+      <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
         type={type}
         required={required}
         dir={ltr ? "ltr" : undefined}
-        className={`rounded-xl border-border/70 focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all duration-200 ${ltr ? "font-latin" : ""}`}
+        className={ltr ? "font-latin" : undefined}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
